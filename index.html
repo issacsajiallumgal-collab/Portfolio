@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Issac Saji — Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cabinet+Grotesk:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__logo">IS<span>.</span></div>
+    <ul class="nav__links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#languages">Languages</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__bg-grid"></div>
+    <div class="hero__orb hero__orb--1"></div>
+    <div class="hero__orb hero__orb--2"></div>
+
+    <div class="hero__content">
+      <div class="hero__eyebrow">
+        <span class="hero__dot"></span>
+        Available for opportunities
+      </div>
+      <h1 class="hero__name">
+        <span class="hero__name-line" data-text="Issac">Issac</span>
+        <span class="hero__name-line hero__name-line--accent" data-text="Saji">Saji</span>
+      </h1>
+      <p class="hero__role">B.Tech Student &amp; Developer</p>
+      <p class="hero__sub">Building elegant solutions with Python, C &amp; Java.</p>
+      <div class="hero__cta">
+        <a href="#contact" class="btn btn--primary">Get in touch</a>
+        <a href="#about" class="btn btn--ghost">Explore ↓</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll-hint">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="about__split">
+        <div class="about__image-wrap">
+          <div class="about__image-placeholder">
+            <span class="about__initials">IS</span>
+          </div>
+          <div class="about__badge">
+            <i class="ti ti-code"></i>
+            <span>Developer</span>
+          </div>
+        </div>
+        <div class="about__body">
+          <div class="section-label">About Me</div>
+          <h2 class="section-title">Hi, I'm <em>Issac Saji</em></h2>
+          <p class="about__text">
+            I'm a passionate B.Tech student with a deep love for technology and problem-solving. 
+            I build software with clarity and intention — whether it's algorithmic work in C, 
+            object-oriented systems in Java, or scripting and data work in Python.
+          </p>
+          <p class="about__text">
+            I believe in writing code that's not just functional, but readable, maintainable, 
+            and meaningful. Always learning, always building.
+          </p>
+          <div class="about__tags">
+            <span class="tag">Python</span>
+            <span class="tag">C</span>
+            <span class="tag">Java</span>
+            <span class="tag">B.Tech Student</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills section" id="skills">
+    <div class="container">
+      <div class="section-label">What I Know</div>
+      <h2 class="section-title">Skills &amp; <em>Expertise</em></h2>
+      <div class="skills__grid">
+
+        <div class="skill-card" data-delay="0">
+          <div class="skill-card__icon">
+            <i class="ti ti-brand-python"></i>
+          </div>
+          <h3 class="skill-card__name">Python</h3>
+          <p class="skill-card__desc">Scripting, automation, data handling, and algorithmic problem solving.</p>
+          <div class="skill-card__level">
+            <span class="skill-card__level-label">Proficiency</span>
+            <div class="skill-card__bar"><div class="skill-card__fill" data-width="85"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-card" data-delay="100">
+          <div class="skill-card__icon">
+            <i class="ti ti-letter-c"></i>
+          </div>
+          <h3 class="skill-card__name">C</h3>
+          <p class="skill-card__desc">Low-level programming, memory management, data structures, and systems.</p>
+          <div class="skill-card__level">
+            <span class="skill-card__level-label">Proficiency</span>
+            <div class="skill-card__bar"><div class="skill-card__fill" data-width="75"></div></div>
+          </div>
+        </div>
+
+        <div class="skill-card" data-delay="200">
+          <div class="skill-card__icon">
+            <i class="ti ti-coffee"></i>
+          </div>
+          <h3 class="skill-card__name">Java</h3>
+          <p class="skill-card__desc">Object-oriented design, OOP principles, and application development.</p>
+          <div class="skill-card__level">
+            <span class="skill-card__level-label">Proficiency</span>
+            <div class="skill-card__bar"><div class="skill-card__fill" data-width="70"></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="education section" id="education">
+    <div class="container">
+      <div class="section-label">My Journey</div>
+      <h2 class="section-title">Education <em>Timeline</em></h2>
+      <div class="timeline">
+
+        <div class="timeline__item timeline__item--active reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__connector"></div>
+          <div class="timeline__card">
+            <div class="timeline__year">Current</div>
+            <h3 class="timeline__degree">Bachelor of Technology (B.Tech)</h3>
+            <p class="timeline__school">Undergraduate Program</p>
+            <p class="timeline__desc">Pursuing a rigorous B.Tech curriculum encompassing computer science fundamentals, software engineering, algorithms, and practical development skills across Python, C, and Java.</p>
+            <div class="timeline__tags">
+              <span class="tag tag--sm">Computer Science</span>
+              <span class="tag tag--sm">Software Engineering</span>
+              <span class="tag tag--sm">Algorithms</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline__item reveal">
+          <div class="timeline__dot"></div>
+          <div class="timeline__card">
+            <div class="timeline__year">Foundation</div>
+            <h3 class="timeline__degree">Higher Secondary Education</h3>
+            <p class="timeline__school">Pre-University Studies</p>
+            <p class="timeline__desc">Built a strong foundation in mathematics, science, and logical reasoning that paved the path to engineering studies.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="languages section" id="languages">
+    <div class="container">
+      <div class="section-label">Communication</div>
+      <h2 class="section-title">Languages <em>Spoken</em></h2>
+      <div class="languages__grid">
+
+        <div class="lang-badge reveal">
+          <div class="lang-badge__flag">🇬🇧</div>
+          <div class="lang-badge__body">
+            <h3 class="lang-badge__name">English</h3>
+            <p class="lang-badge__level">Professional Proficiency</p>
+            <div class="lang-badge__dots">
+              <span class="dot dot--filled"></span>
+              <span class="dot dot--filled"></span>
+              <span class="dot dot--filled"></span>
+              <span class="dot dot--filled"></span>
+              <span class="dot dot--filled"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lang-badge reveal" style="--delay:120ms">
+          <div class="lang-badge__flag">🇮🇳</div>
+          <div class="lang-badge__body">
+            <h3 class="lang-badge__name">Malayalam</h3>
+            <p class="lang-badge__level">Native Proficiency</p>
+            <div class="lang-badge__dots">
+              <span class="dot dot--filled"></span>
+              <span class="dot dot--filled"></span>
+              <span class="dot dot--filled"></span>
+              <span class="dot dot--filled"></span>
+              <span class="dot dot--filled"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="contact__centered">
+        <div class="section-label">Let's Connect</div>
+        <h2 class="section-title">Get In <em>Touch</em></h2>
+        <p class="contact__sub">
+          I'm open to internships, collaborations, and exciting opportunities.<br>
+          Drop me a message — I'd love to hear from you.
+        </p>
+        <a href="mailto:issacsaji@gmail.com" class="contact__email-btn">
+          <i class="ti ti-mail"></i>
+          issacsaji@gmail.com
+        </a>
+        <div class="contact__cards">
+          <a href="mailto:issacsaji@gmail.com" class="contact-card">
+            <i class="ti ti-mail"></i>
+            <span class="contact-card__label">Email</span>
+            <span class="contact-card__val">issacsaji@gmail.com</span>
+          </a>
+          <a href="#" class="contact-card">
+            <i class="ti ti-brand-github"></i>
+            <span class="contact-card__label">GitHub</span>
+            <span class="contact-card__val">View Profile</span>
+          </a>
+          <a href="#" class="contact-card">
+            <i class="ti ti-brand-linkedin"></i>
+            <span class="contact-card__label">LinkedIn</span>
+            <span class="contact-card__val">Connect</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <span class="footer__name">Issac Saji</span>
+        <span class="footer__copy">© 2025 — Built with passion</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
