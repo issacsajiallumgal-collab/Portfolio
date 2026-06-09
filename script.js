@@ -182,7 +182,14 @@
     if (saved) {
       try { return JSON.parse(saved); } catch (error) { return []; }
     }
-    return [];
+    return [
+      {
+        title: 'Gearshare',
+        description: 'Gearshare is a student prototype website designed to simplify peer-to-peer item renting within a college campus. It provides a localized platform where students can easily list, discover, and rent tools, electronics, or academic gear from one another, promoting a sustainable and cost-effective campus sharing economy.',
+        link: 'https://gearshare-gold.vercel.app',
+        image: 'logo.png'
+      }
+    ];
   }
 
   function saveProjects() {
@@ -205,7 +212,7 @@
 
   function renderProjects() {
     if (!projects.length) {
-      projectsGrid.innerHTML = '<div class="project-placeholder">No projects have been added yet. Use the manager button to add assignments or portfolio work.</div>';
+      projectsGrid.innerHTML = '<div class="project-placeholder">No projects have been added yet.</div>';
       return;
     }
     projectsGrid.innerHTML = projects.map(createProjectCard).join('');
@@ -251,10 +258,12 @@
     projectAdminPanel.classList.add('hidden');
   }
 
-  projectManagerBtn.addEventListener('click', () => {
-    projectPasswordOverlay.classList.remove('hidden');
-    projectPasswordInput.focus();
-  });
+  if (projectManagerBtn) {
+    projectManagerBtn.addEventListener('click', () => {
+      projectPasswordOverlay.classList.remove('hidden');
+      projectPasswordInput.focus();
+    });
+  }
 
   projectPasswordForm.addEventListener('submit', (event) => {
     event.preventDefault();
