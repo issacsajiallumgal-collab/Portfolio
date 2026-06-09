@@ -154,6 +154,180 @@
     if (orb2) orb2.style.transform = `translate(${x * -20}px, ${y * -20}px)`;
   }, { passive: true });
 
+  /* ─── PROJECTS: password-protected editor ─── */
+  const PROJECTS_KEY = 'portfolioProjects';
+  const PROJECTS_PASSWORD = 'issacsaji@2007';
+
+  const projectManagerBtn = document.getElementById('projectManagerBtn');
+  const projectPasswordOverlay = document.getElementById('projectPasswordOverlay');
+  const projectPasswordForm = document.getElementById('projectPasswordForm');
+  const projectPasswordInput = document.getElementById('projectPasswordInput');
+  const projectPasswordCancel = document.getElementById('projectPasswordCancel');
+  const projectAdminPanel = document.getElementById('projectAdminPanel');
+  const projectAdminClose = document.getElementById('projectAdminClose');
+  const projectForm = document.getElementById('projectForm');
+  const projectIndexInput = document.getElementById('projectIndex');
+  const projectTitleInput = document.getElementById('projectTitle');
+  const projectDescriptionInput = document.getElementById('projectDescription');
+  const projectLinkInput = document.getElementById('projectLink');
+  const projectImageInput = document.getElementById('projectImage');
+  const projectResetBtn = document.getElementById('projectResetBtn');
+  const projectAdminList = document.getElementById('projectAdminList');
+  const projectsGrid = document.getElementById('projectsGrid');
+
+  let projects = [];
+
+  function loadProjects() {
+    const saved = localStorage.getItem(PROJECTS_KEY);
+    if (saved) {
+      try { return JSON.parse(saved); } catch (error) { return []; }
+    }
+    return [];
+  }
+
+  function saveProjects() {
+    localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+  }
+
+  function createProjectCard(project) {
+    const imageSrc = project.image || 'https://via.placeholder.com/640x360?text=No+image';
+    return `
+      <article class="project-card">
+        <img src="${imageSrc}" alt="${project.title}" />
+        <div class="project-card__body">
+          <h3 class="project-card__title">${project.title}</h3>
+          <p class="project-card__desc">${project.description}</p>
+          <a href="${project.link}" class="project-card__link" target="_blank" rel="noopener noreferrer">Visit project</a>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderProjects() {
+    if (!projects.length) {
+      projectsGrid.innerHTML = '<div class="project-placeholder">No projects have been added yet. Use the manager button to add assignments or portfolio work.</div>';
+      return;
+    }
+    projectsGrid.innerHTML = projects.map(createProjectCard).join('');
+  }
+
+  function renderAdminList() {
+    if (!projects.length) {
+      projectAdminList.innerHTML = '<div class="project-placeholder">No saved projects yet. Add one with the form above.</div>';
+      return;
+    }
+
+    projectAdminList.innerHTML = projects.map((project, index) => `
+      <section class="project-admin__item">
+        <div class="project-admin__item-header">
+          <div>
+            <h4 class="project-admin__item-title">${project.title}</h4>
+            <div class="project-admin__meta">${project.link}</div>
+          </div>
+          <div class="project-admin__item-actions">
+            <button type="button" class="btn btn--ghost project-edit-btn" data-index="${index}">Edit</button>
+            <button type="button" class="btn btn--ghost project-delete-btn" data-index="${index}">Delete</button>
+          </div>
+        </div>
+        <p class="project-admin__meta">${project.description}</p>
+        <img class="project-admin__image" src="${project.image || 'https://via.placeholder.com/640x360?text=No+image'}" alt="${project.title}" />
+      </section>
+    `).join('');
+  }
+
+  function resetProjectForm() {
+    projectForm.reset();
+    projectIndexInput.value = '';
+  }
+
+  function openAdminPanel() {
+    projectPasswordOverlay.classList.add('hidden');
+    projectAdminPanel.classList.remove('hidden');
+    resetProjectForm();
+    renderAdminList();
+  }
+
+  function closeAdminPanel() {
+    projectAdminPanel.classList.add('hidden');
+  }
+
+  projectManagerBtn.addEventListener('click', () => {
+    projectPasswordOverlay.classList.remove('hidden');
+    projectPasswordInput.focus();
+  });
+
+  projectPasswordForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (projectPasswordInput.value.trim() === PROJECTS_PASSWORD) {
+      openAdminPanel();
+    } else {
+      alert('Incorrect password.');
+    }
+    projectPasswordInput.value = '';
+  });
+
+  projectPasswordCancel.addEventListener('click', () => {
+    projectPasswordOverlay.classList.add('hidden');
+  });
+
+  projectAdminClose.addEventListener('click', closeAdminPanel);
+
+  projectForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const title = projectTitleInput.value.trim();
+    const description = projectDescriptionInput.value.trim();
+    const link = projectLinkInput.value.trim();
+    const image = projectImageInput.value.trim();
+
+    if (!title || !description || !link || !image) {
+      alert('Please complete all fields.');
+      return;
+    }
+
+    const projectData = { title, description, link, image };
+    const editIndex = parseInt(projectIndexInput.value, 10);
+    if (!Number.isNaN(editIndex)) {
+      projects[editIndex] = projectData;
+    } else {
+      projects.push(projectData);
+    }
+    saveProjects();
+    renderProjects();
+    renderAdminList();
+    resetProjectForm();
+  });
+
+  projectResetBtn.addEventListener('click', resetProjectForm);
+
+  projectAdminList.addEventListener('click', (event) => {
+    const editButton = event.target.closest('.project-edit-btn');
+    const deleteButton = event.target.closest('.project-delete-btn');
+    if (editButton) {
+      const index = Number(editButton.dataset.index);
+      const project = projects[index];
+      if (!project) return;
+      projectIndexInput.value = String(index);
+      projectTitleInput.value = project.title;
+      projectDescriptionInput.value = project.description;
+      projectLinkInput.value = project.link;
+      projectImageInput.value = project.image;
+      projectTitleInput.focus();
+      return;
+    }
+    if (deleteButton) {
+      const index = Number(deleteButton.dataset.index);
+      if (!Number.isNaN(index)) {
+        projects.splice(index, 1);
+        saveProjects();
+        renderProjects();
+        renderAdminList();
+      }
+    }
+  });
+
+  projects = loadProjects();
+  renderProjects();
+
   /* ─── PAGE LOAD: trigger initial animations ─── */
   window.addEventListener('load', () => {
     document.body.style.opacity = '1';

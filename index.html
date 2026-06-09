@@ -18,6 +18,7 @@
     <ul class="nav__links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#languages">Languages</a></li>
       <li><a href="#contact">Contact</a></li>
@@ -62,7 +63,7 @@
       <div class="about__split">
         <div class="about__image-wrap">
           <div class="about__image-placeholder">
-            <span class="about__initials">IS</span>
+            <img src="image/issac-profile.jpg.webp" alt="Issac Saji" />
           </div>
           <div class="about__badge">
             <i class="ti ti-code"></i>
@@ -136,6 +137,21 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects section" id="projects">
+    <div class="container">
+      <div class="section-label">Work</div>
+      <h2 class="section-title">Projects &amp; <em>Assignments</em></h2>
+      <p class="projects__intro">
+        Browse your current projects here. Use the secure editor to add or update project cards from your browser.
+      </p>
+      <div class="projects__toolbar">
+        <button type="button" class="btn btn--ghost" id="projectManagerBtn">Manage projects</button>
+      </div>
+      <div class="projects__grid" id="projectsGrid"></div>
     </div>
   </section>
 
@@ -227,30 +243,66 @@
           I'm open to internships, collaborations, and exciting opportunities.<br>
           Drop me a message — I'd love to hear from you.
         </p>
-        <a href="mailto:issacsaji@gmail.com" class="contact__email-btn">
+        <a href="mailto:issacsaji85@gmail.com" class="contact__email-btn">
           <i class="ti ti-mail"></i>
-          issacsaji@gmail.com
+          issacsaji85@gmail.com
         </a>
         <div class="contact__cards">
-          <a href="mailto:issacsaji@gmail.com" class="contact-card">
+          <a href="mailto:issacsaji85@gmail.com" class="contact-card">
             <i class="ti ti-mail"></i>
             <span class="contact-card__label">Email</span>
-            <span class="contact-card__val">issacsaji@gmail.com</span>
+            <span class="contact-card__val">issacsaji85@gmail.com</span>
           </a>
-          <a href="#" class="contact-card">
+          <a href="https://github.com/issacsajiallumgal-collab" class="contact-card" target="_blank" rel="noopener noreferrer">
             <i class="ti ti-brand-github"></i>
             <span class="contact-card__label">GitHub</span>
-            <span class="contact-card__val">View Profile</span>
+            <span class="contact-card__val">issacsajiallumgal-collab</span>
           </a>
-          <a href="#" class="contact-card">
+          <a href="https://www.linkedin.com/in/issac-saji-a7075637a" class="contact-card" target="_blank" rel="noopener noreferrer">
             <i class="ti ti-brand-linkedin"></i>
             <span class="contact-card__label">LinkedIn</span>
-            <span class="contact-card__val">Connect</span>
+            <span class="contact-card__val">issac-saji-a7075637a</span>
           </a>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="project-modal hidden" id="projectPasswordOverlay">
+    <div class="project-modal__panel">
+      <div class="project-modal__head">
+        <h3 class="project-modal__title">Project editor login</h3>
+        <button type="button" class="btn btn--ghost" id="projectPasswordCancel">Cancel</button>
+      </div>
+      <p class="project-modal__note">Enter your password to access the secure project editor. The public project cards remain visible to everyone.</p>
+      <form id="projectPasswordForm" class="project-modal__form">
+        <input id="projectPasswordInput" type="password" placeholder="Admin password" required />
+        <button type="submit" class="btn btn--primary">Unlock editor</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="project-modal hidden" id="projectAdminPanel">
+    <div class="project-modal__panel project-modal__panel--wide">
+      <div class="project-modal__head">
+        <h3 class="project-modal__title">Project manager</h3>
+        <button type="button" class="btn btn--ghost" id="projectAdminClose">Close</button>
+      </div>
+      <p class="project-modal__note">Add a title, image, description, and project link. Existing cards can be edited or deleted.</p>
+      <form id="projectForm" class="project-modal__form">
+        <input type="hidden" id="projectIndex" />
+        <input id="projectTitle" type="text" placeholder="Project title" required />
+        <textarea id="projectDescription" rows="4" placeholder="Short description" required></textarea>
+        <input id="projectLink" type="url" placeholder="Visit link (https://...)" required />
+        <input id="projectImage" type="url" placeholder="Image URL or path (e.g. image/project.jpg)" required />
+        <div class="project-modal__actions">
+          <button type="submit" class="btn btn--primary">Save project</button>
+          <button type="button" class="btn btn--ghost" id="projectResetBtn">Reset form</button>
+        </div>
+      </form>
+      <div class="project-admin__list" id="projectAdminList"></div>
+    </div>
+  </div>
 
   <!-- FOOTER -->
   <footer class="footer">
