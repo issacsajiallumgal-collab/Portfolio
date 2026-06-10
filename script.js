@@ -178,11 +178,13 @@
   let projects = [];
 
   function loadProjects() {
-    const saved = localStorage.getItem(PROJECTS_KEY);
-    if (saved) {
-      try { return JSON.parse(saved); } catch (error) { return []; }
-    }
-    return [
+    const defaultProjects = [
+      {
+        title: 'Gesture-Math',
+        description: 'Developed an interactive, computer-vision-based educational game during my internship to make arithmetic learning engaging. Built a real-time hand-tracking pipeline that counts a user\'s raised fingers via webcam to capture numerical inputs and instantly validates whether their math answer is true or false.',
+        link: 'https://maheendrahx.github.io/Gesture-Math/',
+        image: 'image/gesture-math-logo.svg'
+      },
       {
         title: 'Gearshare',
         description: 'Gearshare is a student prototype website designed to simplify peer-to-peer item renting within a college campus. It provides a localized platform where students can easily list, discover, and rent tools, electronics, or academic gear from one another, promoting a sustainable and cost-effective campus sharing economy.',
@@ -190,6 +192,23 @@
         image: 'logo.png'
       }
     ];
+
+    const saved = localStorage.getItem(PROJECTS_KEY);
+    if (saved) {
+      try {
+        const storedProjects = JSON.parse(saved);
+        const combined = [...defaultProjects];
+        storedProjects.forEach((project) => {
+          if (!combined.some((item) => item.title === project.title)) {
+            combined.push(project);
+          }
+        });
+        return combined;
+      } catch (error) {
+        return defaultProjects;
+      }
+    }
+    return defaultProjects;
   }
 
   function saveProjects() {
